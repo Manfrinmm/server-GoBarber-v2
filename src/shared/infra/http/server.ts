@@ -8,7 +8,8 @@ import { resolve } from "path";
 
 import routes from "./routes";
 
-import "./database"; // Database connection
+import "@shared/infra/typeorm"; // Database connection
+import "@shared/container";
 
 const app = express();
 

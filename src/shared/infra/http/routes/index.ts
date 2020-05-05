@@ -1,10 +1,10 @@
 import { Router, Request, Response, NextFunction } from "express";
 
-import AppError from "../app/errors/AppError";
-import Authenticate from "../app/middlewares/Authenticate";
-import appointmentRouter from "./appointments.routes";
-import sessionRouter from "./sessions.routes";
-import userRouter from "./users.routes";
+import appointmentRouter from "@modules/appointments/infra/http/routes/appointments.routes";
+import Authenticate from "@modules/users/infra/http/middlewares/Authenticate";
+import sessionRouter from "@modules/users/infra/http/routes/sessions.routes";
+import userRouter from "@modules/users/infra/http/routes/users.routes";
+import AppError from "@shared/errors/AppError";
 
 const routes = Router();
 routes.use("/users", userRouter);

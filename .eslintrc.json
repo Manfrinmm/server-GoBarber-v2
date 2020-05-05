@@ -29,6 +29,7 @@
     ],
     "@typescript-eslint/camelcase": "off",
     "prettier/prettier": "error",
+    "no-useless-constructor": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -43,12 +44,19 @@
         "groups": [
           ["/^express/", "/^typeorm/"],
           "module",
+          ["/^@/"],
           ["parent", "sibling", "index"]
         ],
         "alphabetize": {
           "order": "asc",
           "ignoreCase": true
         }
+      }
+    ],
+    "@typescript-eslint/interface-name-prefix": [
+      "error",
+      {
+        "prefixWithI": "always"
       }
     ]
   },
