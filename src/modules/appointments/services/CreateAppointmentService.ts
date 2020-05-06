@@ -2,6 +2,7 @@ import { startOfDay } from "date-fns";
 import { injectable, inject } from "tsyringe";
 
 import Appointment from "@modules/appointments/infra/typeorm/entities/Appointment";
+import AppError from "@shared/errors/AppError";
 
 import IAppointmentsRepository from "../repositories/IAppointmentsRepository";
 
@@ -30,7 +31,7 @@ class CreateAppointmentService {
     );
 
     if (findAppointmentInSameDate) {
-      throw Error("Appointment not available");
+      throw new AppError("Appointment not available");
     }
 
     const appointment = this.appointmentsRepository.create({
