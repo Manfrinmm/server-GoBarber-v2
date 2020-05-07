@@ -1,20 +1,20 @@
 import AppError from "@shared/errors/AppError";
 
 import FakeHashProvider from "../providers/HashProvider/fakes/FakeHashProvider";
-import FakeUserRepository from "../repositories/fakes/FakeUserRepository";
+import FakeUsersRepository from "../repositories/fakes/FakeUsersRepository";
 import AuthenticateSessionService from "./AuthenticateSessionService";
 import CreateUserService from "./CreateUserService";
 
 describe("AuthenticateUser", () => {
   it("should be able to authenticate", async () => {
-    // const fakeUserRepository = new FakeUserRepository();
+    // const fakeUsersRepository = new FakeUsersRepository();
     // const fakeHashProvider = new FakeHashProvider();
     // const createUser = new CreateUserService(
-    //   fakeUserRepository,
+    //   fakeUsersRepository,
     //   fakeHashProvider,
     // );
     // const authenticateSession = new AuthenticateSessionService(
-    //   fakeUserRepository,
+    //   fakeUsersRepository,
     //   fakeHashProvider,
     // );
     // const user = await createUser.execute({
@@ -31,11 +31,11 @@ describe("AuthenticateUser", () => {
   });
 
   it("should not be able to authenticate with non existing user ", async () => {
-    const fakeUserRepository = new FakeUserRepository();
+    const fakeUsersRepository = new FakeUsersRepository();
     const fakeHashProvider = new FakeHashProvider();
 
     const authenticateSession = new AuthenticateSessionService(
-      fakeUserRepository,
+      fakeUsersRepository,
       fakeHashProvider,
     );
 
@@ -48,14 +48,14 @@ describe("AuthenticateUser", () => {
   });
 
   it("should not be able to authenticate with wrong password", async () => {
-    const fakeUserRepository = new FakeUserRepository();
+    const fakeUsersRepository = new FakeUsersRepository();
     const fakeHashProvider = new FakeHashProvider();
     const createUser = new CreateUserService(
-      fakeUserRepository,
+      fakeUsersRepository,
       fakeHashProvider,
     );
     const authenticateSession = new AuthenticateSessionService(
-      fakeUserRepository,
+      fakeUsersRepository,
       fakeHashProvider,
     );
 
