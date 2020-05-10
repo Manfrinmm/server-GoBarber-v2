@@ -14,6 +14,8 @@ class FakeUserTokensRepository implements IUserTokensRepository {
       id: uuid(),
       token: uuid(),
       user_id,
+      created_at: new Date(),
+      updated_at: new Date(),
     });
 
     this.userTokens.push(userToken);
@@ -27,6 +29,14 @@ class FakeUserTokensRepository implements IUserTokensRepository {
     );
 
     return userToken;
+  }
+
+  public async delete(userToken: UserToken): Promise<void> {
+    const findIndex = this.userTokens.findIndex(
+      item => item.id === userToken.id,
+    );
+
+    this.userTokens.splice(findIndex, 1);
   }
 }
 

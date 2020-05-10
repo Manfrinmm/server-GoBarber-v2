@@ -21,6 +21,8 @@ class UserController {
 
     const user = await createUser.execute({ name, email, password });
 
+    delete user.password;
+
     return res.status(201).json(user);
   }
 

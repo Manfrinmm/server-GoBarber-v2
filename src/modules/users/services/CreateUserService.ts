@@ -37,8 +37,6 @@ class CreateUserService {
       password: password_hash,
     });
 
-    delete user.password;
-
     return user;
   }
 }

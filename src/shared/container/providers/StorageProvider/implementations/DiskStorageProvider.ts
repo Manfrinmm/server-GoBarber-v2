@@ -1,40 +1,23 @@
 import fs from "fs";
 import path from "path";
 
+import multerConfig from "@config/Multer";
+
 import IStorageProvider from "../models/IStorageProvider";
 
 export default class DiskStorageProvider implements IStorageProvider {
   public async saveFile(file: string): Promise<string> {
-    const pathToTmpFolder = path.resolve(
-      "..",
-      "..",
-      "..",
-      "..",
-      "..",
-      "..",
-      "tmp",
-    );
-
     await fs.promises.rename(
-      path.resolve(pathToTmpFolder, file),
-      path.resolve(pathToTmpFolder, "uploads", file),
+      path.resolve(multerConfig.tmpFolder, file),
+      path.resolve(multerConfig.uploadsFolder, file),
     );
 
     return file;
   }
 
   public async deleteFile(file: string): Promise<void> {
-    const pathToTmpFolder = path.resolve(
-      "..",
-      "..",
-      "..",
-      "..",
-      "..",
-      "..",
-      "tmp",
-    );
     const filePath = path.resolve(
-      path.resolve(pathToTmpFolder, "uploads", file),
+      path.resolve(multerConfig.uploadsFolder, file),
     );
 
     try {

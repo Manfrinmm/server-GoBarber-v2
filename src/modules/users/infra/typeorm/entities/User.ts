@@ -25,7 +25,7 @@ class User {
   @AfterUpdate()
   returnAvatarUrl(): void {
     this.avatar_url = encodeURI(
-      `http://192.168.0.101:3333/files/${this.avatar}`,
+      `http://192.168.0.101:3333/files/uploads/${this.avatar}`,
     );
   }
 
@@ -33,7 +33,7 @@ class User {
   loadAvatarUrl(): void {
     if (this.avatar) {
       this.avatar_url = encodeURI(
-        `http://192.168.0.101:3333/files/${this.avatar}`,
+        `http://192.168.0.101:3333/files/uploads/${this.avatar}`,
       );
     }
   }

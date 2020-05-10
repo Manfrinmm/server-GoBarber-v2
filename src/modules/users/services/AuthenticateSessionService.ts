@@ -32,7 +32,7 @@ export default class AuthenticateSessionService {
     const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
-      throw new AppError("Wrong credentials ", 401);
+      throw new AppError("Wrong credentials", 401);
     }
 
     const passwordCompared = await this.hashProvider.compareHash(
@@ -41,7 +41,7 @@ export default class AuthenticateSessionService {
     );
 
     if (!passwordCompared) {
-      throw new AppError("Wrong credentials ", 401);
+      throw new AppError("Wrong credentials", 401);
     }
 
     const { secret, expiresIn } = AuthConfig;

@@ -1,3 +1,4 @@
+import { differenceInHours } from "date-fns";
 import { injectable, inject } from "tsyringe";
 
 import IHashProvider from "@modules/users/providers/HashProvider/models/IHashProvider";
@@ -37,7 +38,15 @@ class SendForgotPasswordEmailService {
       throw new AppError("User does not exists", 404);
     }
 
+    const tokenCreatedAt = userToken.created_at;
+
+    if (differenceInHours(Date.now(), tokenCreatedAt) > 2) {
+      throw new AppError("Token expired", 401);
+    }
+
     user.password = await this.hashProvider.generateHash(password);
+
+    await this.userTokensRepository.delete(userToken);
 
     await this.usersRepository.save(user);
   }
