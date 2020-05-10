@@ -17,12 +17,12 @@ export default class CreateAppointment1586916271211
           {
             name: "user_id",
             type: "uuid",
-            isNullable: false,
+            isNullable: true,
           },
           {
             name: "provider_id",
             type: "uuid",
-            isNullable: false,
+            isNullable: true,
           },
           {
             name: "date",

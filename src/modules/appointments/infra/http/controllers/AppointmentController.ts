@@ -17,7 +17,9 @@ class AppointmentController {
   // }
 
   public async create(req: Request, res: Response): Promise<Response> {
-    const { date, user_id, provider_id } = req.body;
+    const user_id = req.user.id;
+
+    const { date, provider_id } = req.body;
 
     const parsedData = parseISO(date);
 
