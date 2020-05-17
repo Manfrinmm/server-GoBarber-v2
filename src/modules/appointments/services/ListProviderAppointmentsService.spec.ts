@@ -1,5 +1,6 @@
 import FakeAppointmentsRepository from "@modules/appointments/repositories/fakes/FakeAppointmentsRepository";
 import FakeUsersRepository from "@modules/users/repositories/fakes/FakeUsersRepository";
+import FakeCacheProvider from "@shared/container/providers/CacheProvider/fakes/FakeRedisCacheProvider";
 import AppError from "@shared/errors/AppError";
 
 import ListProviderAppointmentsService from "./ListProviderAppointmentsService";
@@ -7,15 +8,18 @@ import ListProviderAppointmentsService from "./ListProviderAppointmentsService";
 describe("ListProviderAppointmentsService", () => {
   let fakeUsersRepository: FakeUsersRepository;
   let fakeAppointmentsRepository: FakeAppointmentsRepository;
+  let fakeCacheProvider: FakeCacheProvider;
 
   let listProviderAppointments: ListProviderAppointmentsService;
 
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
     fakeAppointmentsRepository = new FakeAppointmentsRepository();
+    fakeCacheProvider = new FakeCacheProvider();
 
     listProviderAppointments = new ListProviderAppointmentsService(
       fakeAppointmentsRepository,
+      fakeCacheProvider,
     );
   });
 

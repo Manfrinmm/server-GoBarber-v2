@@ -21,10 +21,8 @@ class AppointmentController {
 
     const { date, provider_id } = req.body;
 
-    const parsedData = parseISO(date);
-
     const data = {
-      date: parsedData,
+      date,
       user_id,
       provider_id,
     };

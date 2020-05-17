@@ -12,7 +12,12 @@ import sessionRouter from "@modules/users/infra/http/routes/sessions.routes";
 import userRouter from "@modules/users/infra/http/routes/users.routes";
 import AppError from "@shared/errors/AppError";
 
+import rateLimiter from "../middlewares/RateLimiter";
+
 const routes = Router();
+
+routes.use(rateLimiter);
+
 routes.use("/users", userRouter);
 routes.use("/sessions", sessionRouter);
 routes.use("/password", passwordRouter);
