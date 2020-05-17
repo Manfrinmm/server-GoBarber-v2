@@ -1,6 +1,8 @@
 import express, { Router, Request, Response, NextFunction } from "express";
 
-import multerConfig from "@config/Multer";
+import { errors } from "celebrate";
+
+import uploadConfig from "@config/upload";
 import appointmentRouter from "@modules/appointments/infra/http/routes/appointments.routes";
 import providersRouter from "@modules/appointments/infra/http/routes/providers.routes";
 import Authenticate from "@modules/users/infra/http/middlewares/Authenticate";
@@ -14,12 +16,14 @@ const routes = Router();
 routes.use("/users", userRouter);
 routes.use("/sessions", sessionRouter);
 routes.use("/password", passwordRouter);
-routes.use("/files", express.static(multerConfig.tmpFolder));
+routes.use("/files", express.static(uploadConfig.tmpFolder));
 
 routes.use(Authenticate);
 routes.use("/appointments", appointmentRouter);
 routes.use("/providers", providersRouter);
 routes.use("/profile", profileRouter);
+
+routes.use(errors());
 
 routes.use((err: Error, req: Request, res: Response, _: NextFunction) => {
   if (err instanceof AppError) {

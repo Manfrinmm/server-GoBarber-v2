@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 
+import { classToClass } from "class-transformer";
 import { container } from "tsyringe";
 
 import User from "@modules/users/infra/typeorm/entities/User";
@@ -11,7 +12,7 @@ class UserController {
     const usersRepo = getRepository(User);
     const users = await usersRepo.find();
 
-    return res.json(users);
+    return res.json(classToClass(users));
   }
 
   public async create(req: Request, res: Response): Promise<Response> {
@@ -23,22 +24,8 @@ class UserController {
 
     delete user.password;
 
-    return res.status(201).json(user);
+    return res.status(201).json(classToClass(user));
   }
-
-  // public async update(req: Request, res: Response): Promise<Response> {
-  //   const { file } = req;
-  //   const user_id = req.user.id;
-
-  //   const updateUserAvatar = container.resolve(UpdateUserAvatarService);
-
-  //   const user = await updateUserAvatar.execute({
-  //     user_id,
-  //     avatarFilename: file.filename,
-  //   });
-
-  //   return res.json(user);
-  // }
 }
 
 export default new UserController();

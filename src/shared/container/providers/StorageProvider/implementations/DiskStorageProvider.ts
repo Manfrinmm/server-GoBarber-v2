@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-import multerConfig from "@config/Multer";
+import multerConfig from "@config/upload";
 
 import IStorageProvider from "../models/IStorageProvider";
 

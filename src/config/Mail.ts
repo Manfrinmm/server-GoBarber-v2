@@ -1,4 +1,15 @@
+interface IMailConfig {
+  driver: "ethereal" | "ses";
+  default: {
+    from: {
+      email: string;
+      name: string;
+    };
+  };
+}
+
 export default {
+  driver: process.env.MAIL_DRIVER || "ethereal",
   host: process.env.MAIL_HOST,
   port: process.env.MAIL_PORT,
   // eslint-disable-next-line no-unneeded-ternary
@@ -8,6 +19,9 @@ export default {
     pass: process.env.MAIL_PASS, // generated ethereal password
   },
   default: {
-    from: "Equipre GoBarber <noreplay@gobarber.com>",
+    from: {
+      email: "gobarber@devmatheus.com",
+      name: "Go Barber",
+    },
   },
-};
+} as IMailConfig;
