@@ -1,21 +1,10 @@
 import { Request, Response } from "express";
 
-import { parseISO } from "date-fns";
 import { container } from "tsyringe";
 
-import AppointmentsRepository from "@modules/appointments/infra/typeorm/repositories/AppointmentsRepository";
 import CreateAppointmentService from "@modules/appointments/services/CreateAppointmentService";
 
 class AppointmentController {
-  // public async index(req: Request, res: Response): Promise<Response> {
-
-  //   const
-
-  //   const appointments = await
-
-  //   res.status(200).json(appointments);
-  // }
-
   public async create(req: Request, res: Response): Promise<Response> {
     const user_id = req.user.id;
 

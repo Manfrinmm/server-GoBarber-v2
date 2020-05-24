@@ -1,3 +1,4 @@
+import { classToClass } from "class-transformer";
 import { injectable, inject } from "tsyringe";
 
 import IFindAllInMonthFromProviderDTO from "@modules/appointments/dtos/IFindAllInMonthFromProviderDTO";
@@ -41,7 +42,7 @@ export default class ListProviderAppointmentsService {
         },
       );
 
-      await this.cacheProvider.save(cacheKey, appointments);
+      await this.cacheProvider.save(cacheKey, classToClass(appointments));
     }
 
     return appointments;

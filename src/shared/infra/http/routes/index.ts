@@ -16,12 +16,13 @@ import rateLimiter from "../middlewares/RateLimiter";
 
 const routes = Router();
 
+routes.use("/files", express.static(uploadConfig.tmpFolder));
+
 routes.use(rateLimiter);
 
 routes.use("/users", userRouter);
 routes.use("/sessions", sessionRouter);
 routes.use("/password", passwordRouter);
-routes.use("/files", express.static(uploadConfig.tmpFolder));
 
 routes.use(Authenticate);
 routes.use("/appointments", appointmentRouter);
