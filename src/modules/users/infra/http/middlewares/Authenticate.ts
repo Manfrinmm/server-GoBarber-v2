@@ -35,8 +35,6 @@ export default function (
 
     return next();
   } catch (err) {
-    console.log(err);
-
     throw new AppError("Token is not valid", 401);
   }
 }

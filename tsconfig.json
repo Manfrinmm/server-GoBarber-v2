@@ -17,5 +17,13 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true
-  }
+  },
+
+  "exclude": [
+    "babel.config.js",
+    "jest.config.js",
+    "tmp-jest",
+    "coverage",
+    "dist"
+  ]
 }

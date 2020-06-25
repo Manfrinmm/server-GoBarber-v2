@@ -9,6 +9,7 @@ class UserController {
   public async update(req: Request, res: Response): Promise<Response> {
     const { file } = req;
     const user_id = req.user.id;
+    console.log(file);
 
     const updateUserAvatar = container.resolve(UpdateUserAvatarService);
 
